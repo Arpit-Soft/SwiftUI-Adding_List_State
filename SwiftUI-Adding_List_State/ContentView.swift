@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var tasks = [Task]()
+    private func addTask() {
+        tasks.append(Task(name: "Buy Groceries"))
+    }
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Button(action: addTask, label: {
+                Text("Add Task")
+            })
+            List(tasks, id: \.id) { task in
+                Text(task.name)
+            }
+        }
     }
 }
 
